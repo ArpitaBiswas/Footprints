@@ -36,18 +36,45 @@ public class HelloWorld extends HttpServlet {
 		String username= "";
 		username= request.getParameter("username");
 		
+		//Initiate session 
+		
+		
+		//Search within session 
+		
+		
+		//Retrieve Results via Polling
+		
+		
+		
+		//Get details on particular search result
+
+		
+		
 		try{
 		//String accessToken = 
-		String query1 = "SELECT uid2 FROM friend WHERE uid1 = me()";
-		String urltemp = "https://api.facebook.com/method/fql.query?query=" + URLEncoder.encode(""+query1, "UTF-8") + "&format=json";
-		
+		String base = "http://api.hotwire.com/v1/deal/hotel";
+		//String query = "&limit=1&dest=NYC&distance=*~30&starrating=4~*&sort=price";
+		//https://www.kayak.com/k/ident/apisession?username=uname&password=pwd
+
 		 //if(accessToken != null)
-             urltemp = urltemp + "&access_token=AAACEdEose0cBAPr4eyHvQQd55YriCLZBNWuSsJbEDt8UZCMNYWKcqKbeZB7tmF9FzFTIW3jyJOaUa0y6vElBrBKfKZA0lKT9oa8rTMza9ng5vuLIAu3c" ;
+         //    urltemp = urltemp + "&access_token=AAACEdEose0cBAPr4eyHvQQd55YriCLZBNWuSsJbEDt8UZCMNYWKcqKbeZB7tmF9FzFTIW3jyJOaUa0y6vElBrBKfKZA0lKT9oa8rTMza9ng5vuLIAu3c" ;
 		
-		String host = "http://www.facebook.com"+"/fql?q="+query1;
-		URL url = new URL(urltemp);
+		//String host = "http://www.facebook.com"+"/fql?q="+query1;
+		URL url = new URL(base);
+		
+		
+		System.out.println("TP 1 --------");
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		
+		conn.addRequestProperty("apikey", "gedtf6ydpmfcnvguf4dwahn5");	
 		conn.setRequestMethod("GET");
+		System.out.println("TP 3 --------");
+		
+		System.out.println("TP 4 --------");
+		//conn.addRequestProperty("username", "arpita.biswas07@gmail.com");
+		//System.out.println("TP 5 --------");
+		//conn.addRequestProperty("password", "pennapps2013");
+		System.out.println("TP 6 --------");
 		System.out.println("ghooochuuuu ---- 1");
 		conn.connect();
 		//InputStream in = conn.getInputStream();
@@ -56,19 +83,15 @@ public class HelloWorld extends HttpServlet {
 		while((text = reader.readLine())!=null){
 			//String text = reader.readLine();
 			System.out.println(text);
-			System.out.println("ghooochuuuu ---- 2");
 		} // end of while 
-		System.out.println("Done reading what fb sent");
+		System.out.println("Done reading what hotwire sent");
 		reader.close();
 		}
 		catch(Exception e){
 			System.out.println("Something's crashed "+e);
 		}
 		System.out.println("Closed all");
-		
-		
-		PrintWriter pw = response.getWriter();
-		pw.write("hello world " + username);
+
 	}
 
 	/**
